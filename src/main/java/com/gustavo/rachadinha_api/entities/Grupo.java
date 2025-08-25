@@ -1,16 +1,15 @@
 package com.gustavo.rachadinha_api.entities;
 
 import jakarta.persistence.*;
-
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name="grupo")
+@Table(name="grupos")
 public class Grupo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @Column(nullable = false)
     private String nome;
@@ -18,15 +17,15 @@ public class Grupo {
     @Column
     private String descricao;
 
-    @Column(name = "data_criacao", nullable = false , updatable = false)
+    @Column(name = "data_criacao", nullable = false, updatable = false)
     private LocalDateTime dataCriacao;
 
-    public Grupo(){}
+    public Grupo() {
+    }
 
-    public Grupo(String nome, String descricao, LocalDateTime dataCriacao) {
+    public Grupo(String nome, String descricao) {
         this.nome = nome;
         this.descricao = descricao;
-        this.dataCriacao = dataCriacao;
     }
 
     @PrePersist
@@ -34,6 +33,7 @@ public class Grupo {
         this.dataCriacao = LocalDateTime.now();
     }
 
+    // Getters e Setters (agora consistentes com o tipo Long)
     public Long getId() {
         return id;
     }

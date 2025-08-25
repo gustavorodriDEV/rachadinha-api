@@ -2,7 +2,8 @@ package com.gustavo.rachadinha_api.entities;
 
 import jakarta.persistence.*;
 
-@Entity(name = "particiipantes")
+@Entity
+@Table(name = "participantes")
 public class Participante {
 
     @Id
@@ -15,17 +16,19 @@ public class Participante {
     @Column(nullable = false, unique = true)
     private String email;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_grupo", nullable = false)
     private Grupo grupo;
 
     public Participante(){}
 
-    public Participante(String email, Grupo grupo, String nome) {
+    public Participante(String nome, String email, Grupo grupo) {
         this.nome = nome;
         this.email = email;
         this.grupo = grupo;
     }
+
+    // Getters e Setters
     public Long getId() {
         return id;
     }
