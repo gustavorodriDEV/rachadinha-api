@@ -33,6 +33,30 @@ public class ParticipanteService {
     }
 
     @Transactional(readOnly = true)
+    public Participante buscarParticipante(Long idParticipante) {
+        return participanteRepository.findById(idParticipante)
+                .orElseThrow(() -> new RuntimeException("Participante não encontrado com o ID: " + idParticipante));
+    }
+
+    @Transactional
+    public Participante atualizarParticipante(Long idParticipante, ParticipanteDTO participanteDTO) {
+        Participante participanteExistente = buscarParticipante(idParticipante);
+
+        participanteExistente.setNome(participanteDTO.getNome());
+        participanteExistente.setEmail(participanteDTO.getEmail());
+
+        return participanteRepository.save(participanteExistente);
+    }
+
+    @Transactional
+    public void deletarParticipante(Long idParticipante) {
+        if (!participanteRepository.existsById(idParticipante)) {
+            throw new RuntimeException("Esse participante não existe. ID: " + idParticipante);
+        }
+        participanteRepository.deleteById(idParticipante);
+    }
+
+    @Transactional(readOnly = true)
     public List<Participante> listarParticipantesPorGrupo(Long idGrupo) {
         grupoService.buscarPorId(idGrupo);
         return participanteRepository.findByGrupoId(idGrupo);

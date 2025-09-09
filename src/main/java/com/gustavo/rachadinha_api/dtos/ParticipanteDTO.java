@@ -5,6 +5,8 @@ import jakarta.validation.constraints.NotBlank;
 
 public class ParticipanteDTO {
 
+    private Long id;
+
     @NotBlank(message = "O nome não pode ser vazio.")
     private String nome;
 
@@ -12,12 +14,24 @@ public class ParticipanteDTO {
     @Email(message = "O formato do email é inválido")
     private String email;
 
+    private Long idGrupo;
+
     public ParticipanteDTO() {
     }
 
-    public ParticipanteDTO(String nome, String email) {
+    public ParticipanteDTO(Long id, String nome, String email, Long idGrupo) {
+        this.id = id;
         this.nome = nome;
         this.email = email;
+        this.idGrupo = idGrupo;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getNome() {
@@ -34,5 +48,13 @@ public class ParticipanteDTO {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Long getIdGrupo() {
+        return idGrupo;
+    }
+
+    public void setIdGrupo(Long idGrupo) {
+        this.idGrupo = idGrupo;
     }
 }
