@@ -79,9 +79,19 @@ A URL base para todos os endpoints é `/api`.
 | `PUT`      | `/grupos/{id}`         | Atualiza um grupo existente.           |
 | `DELETE`   | `/grupos/{id}`         | Deleta um grupo específico.            |
 
-*(Mais recursos, como `/participantes` e `/despesas`..., serão adicionados futuramente)*
+### Recurso: Participantes (`/grupos/{idGrupo}/participantes`)
+
+| Verbo HTTP | Endpoint                                           | Descrição                                            |
+| :--------- | :-------------------------------------------       | :--------------------------------------------------  |
+| `POST`     | `/grupos/{idGrupo}/participantes`                  | Cria um novo participante no grupo especificado.     |
+| `GET`      | `/grupos/{idGrupo}/participantes`                  | Lista todos os participantes de um grupo específico. |
+| `GET`      | `/grupos/{idGrupo}/participantes/{idParticipante}` | Busca um participante específico pelo seu ID.        |
+| `PUT`      | `/grupos/{idGrupo}/participantes/{idParticipante}` | Atualiza os dados de um participante existente.      |
+| `DELETE`   | `/grupos/{idGrupo}/participantes/{idParticipante}` | Deleta um participante de um grupo.                  |
+
+*(Mais recursos serão adicionados futuramente)*
 
 ---
 <div align="center">
-  Feito com ❤️ por Gustavo Rodrigues.
+  Feito por Gustavo Rodrigues.
 </div>
