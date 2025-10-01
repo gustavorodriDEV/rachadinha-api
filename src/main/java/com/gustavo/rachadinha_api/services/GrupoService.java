@@ -2,6 +2,7 @@ package com.gustavo.rachadinha_api.services;
 
 import com.gustavo.rachadinha_api.entities.Grupo;
 import com.gustavo.rachadinha_api.repositories.GrupoRepository;
+import com.gustavo.rachadinha_api.services.exceptions.RecursoNaoEncontradoException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -32,7 +33,7 @@ public class GrupoService {
     @Transactional(readOnly = true)
     public Grupo buscarPorId(Long id) {
         Optional<Grupo> grupoOptional = grupoRepository.findById(id);
-        return grupoOptional.orElseThrow(() -> new RuntimeException("Grupo não encontrado com o ID: " + id));
+        return grupoOptional.orElseThrow(() -> new RecursoNaoEncontradoException("Grupo não encontrado com o ID: " + id));
     }
 
     @Transactional
@@ -45,7 +46,7 @@ public class GrupoService {
 
     public void deletarGrupo(Long id){
         if (!grupoRepository.existsById(id)){
-            throw new RuntimeException("Grupo não encontrado com o ID: " + id);
+            throw new RecursoNaoEncontradoException("Grupo não encontrado com o ID: " + id);
         }
         grupoRepository.deleteById(id);
     }
